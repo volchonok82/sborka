@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>форма поиска</title>
+    <style>
+        .search__input-text {
+            display: flex;
+        }
+
+        .categories {
+            display: none;
+        }
+
+        .empty {
+            display: none;
+        }
+
+        .selected {
+            display: none;
+        }
+
+        ._active {
+            display: block;
+        }
+
+        input[type=checkbox]:checked+span {
+            color: orange;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="search">
+        <form action="#">
+            <div class="search__input-text">
+                <div class="search__label">
+                    <span class="empty _active">Везде</span>
+                    <span class="selected" data-text="Выбрано: "></span>
+                </div>
+                <input type="text" id="search">
+                <button type="submit">search</button>
+            </div>
+
+
+            <div class="categories">
+                <div class="categories__item">
+                    <label class="categories__checkbox checkbox">
+                        <input class="visually-hidden" type="checkbox" name="category">
+                        <span>Категория1</span>
+                    </label>
+                </div>
+                <div class="categories__item">
+                    <label class="categories__checkbox checkbox">
+                        <input class="visually-hidden" type="checkbox" name="category">
+                        <span>Категория1</span>
+                    </label>
+                </div>
+                <div class="categories__item">
+                    <label class="categories__checkbox checkbox">
+                        <input class="visually-hidden" type="checkbox" name="category">
+                        <span>Категория1</span>
+                    </label>
+                </div>
+                <div class="categories__item">
+                    <label class="categories__checkbox checkbox">
+                        <input class="visually-hidden" type="checkbox" name="category">
+                        <span>Категория1</span>
+                    </label>
+                </div>
+                <div class="categories__item">
+                    <label class="categories__checkbox checkbox">
+                        <input class="visually-hidden" type="checkbox" name="category">
+                        <span>Категория1</span>
+                    </label>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- скрипт на js -->
+    <!-- <script>
+        // ПОИСК ПО КАТЕГОРИЯМ НА ЧЕКБОКСАХ
+
+        // получаем элемент при клике на который открываем элемент с категориями
+        let categoryOpenBtn = document.querySelector('.search__label');
+
+        // получаем елемент с категориями, который изначально скрыт
+        let category = document.querySelector('.categories');
+        // делаем его видимым
+        categoryOpenBtn.onclick = function () {
+            category.classList.toggle('_active');
+        };
+
+        // два спана, один показывает что ищем везде
+        // второй показывает сколько категорий выбрано
+        let empty = document.querySelector('.empty');
+        let selected = document.querySelector('.selected');
+
+        // получаем все чекбоксы в категориях
+        let categoriesCheckboxes = document.querySelectorAll('input[type=checkbox]');
+
+        // устанавливаем счетчик для выбраных категорий
+        let categoriesСount = 0;
+
+        // перебираем все чекбоксы
+        for (let i = 0; i < categoriesCheckboxes.length; i++) {
+
+            // прослушиваем изменение чекбоксов
+            categoriesCheckboxes[i].addEventListener('change', function () {
+
+
+                // если чекбок отметили прибавляем к счетчику единицу
+                if (categoriesCheckboxes[i].checked) {
+                    categoriesСount = categoriesСount + 1;
+                    // если выделение сняли вычитаем из счетчика единицу
+                } else {
+                    categoriesСount = categoriesСount - 1;
+                };
+
+                // если счетчик больше 1 меняем видимость у спанов
+                // и добавляем количество выбранных категорий в видимый спан
+                if (categoriesСount > 0) {
+                    empty.classList.remove('_active');
+                    selected.classList.add('_active');
+                    selected.innerHTML = selected.getAttribute('data-text') + categoriesСount;
+                    // если ничего не выбрали меняем обратно
+                } else {
+                    empty.classList.add('_active');
+                    selected.classList.remove('_active');
+                };
+            });
+        }
+    </script> -->
+
+
+<!-- скрипт на QJUERY короче -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+// показываем категории по клику на лейбле
+$('.search__label').on('click', function(){
+    $('.categories').toggle(300);
+});
+
+// при изменении чекбокса, проверяем количество отмеченных 
+// и если значение больше нуля, меняем классы местами и выводим количество
+// выбранных чекбоксов
+
+$('input:checkbox').on('change', function(){
+    let selectedCheckboxses = $('input[type=checkbox]:checked');
+    if($('input[type=checkbox]:checked').length > 0){
+        $('.empty').removeClass('_active');
+        $('.selected').addClass('_active').text("Выбрано: "+$('input[type=checkbox]:checked').length);
+    }else{
+        $('.empty').addClass('_active');
+        $('.selected').removeClass('_active'); 
+    }
+});
+</script>
+</body>
+
+</html>

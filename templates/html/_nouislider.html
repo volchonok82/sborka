@@ -1,0 +1,61 @@
+<div class="wrapper">
+
+    
+    <!-- один слайдер -->
+    <div class="класс заголовка">Цена:</div> <br>
+    <!-- rangeSlider -->
+    <div class="range range-price класс дива где распологается слайдер">
+        <!-- инпуты -->
+        <div class="range__inputs ">
+            <label>
+                <span class="visually-hidden">начальная цена</span>
+                <input type="text" class="range__input" id="price-start">
+            </label>
+            <label>
+                <span class="visually-hidden">конечная цена</span>
+                <input type="text" class="range__input" id="price-end">
+            </label>
+
+        </div>
+        <!-- сам слайдер -->
+        <div class="range__slider" id="rangeSlider"></div>
+    </div>
+
+
+
+    <!-- группа слайдеров -->
+    <div class="класс заголовка">Рейтинг:</div> <br>
+    <div data-range class="range2 range-rating класс дива где распологается слайдер">
+        <!-- инпуты -->
+        <div class="range__inputs">
+            <label>
+                <span class="visually-hidden">начальное значение</span>
+                <input data-range-from="1" type="text" class="range__input" id="rating-start" value="3">
+            </label>
+            <label>
+                <span class="visually-hidden">конечное значение</span>
+                <input data-range-to="5" type="text" class="range__input" id="rating-end" value="5">
+            </label>
+        </div>
+        <!-- сам слайдер -->
+        <div data-range-slider class="range__slider" id="rangeSliderRating"></div>
+    </div>
+
+    <div class="класс заголовка">Другое:</div> <br>
+    <div data-range class="range3 класс дива где распологается слайдер">
+        <!-- инпуты -->
+        <div class="range__inputs">
+            <label>
+                <span class="visually-hidden">начальное значение</span>
+                <input data-range-from="0" type="text" class="range__input" id="other-start" value="10">
+            </label>
+            <label>
+                <span class="visually-hidden">конечное значение</span>
+                <input data-range-to="100" type="text" class="range__input" id="other-end" value="50">
+            </label>
+        </div>
+        <!-- сам слайдер -->
+        <div data-range-slider class="range__slider" id="rangeSliderOther"></div>
+    </div>
+
+</div>

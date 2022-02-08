@@ -1,0 +1,77 @@
+<style>
+    #btnUp {
+        display: inline-block;
+        position: fixed;
+        z-index: 10;
+        bottom: 30px;
+        right: -40px;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease 0s;
+    }
+
+    #btnUp._visible {
+        opacity: 1;
+        visibility: visible;
+        right: calc(2%);
+    }
+</style>
+
+<div id="btnUp">UP</div>
+
+<script>
+    /*  -------------------------------------------------------*/
+    /*  Функция для прокрутки с контролем скорости
+    /*  -------------------------------------------------------*/
+    function scrollTo(to, duration = 700) {
+        const
+            element = document.scrollingElement || document.documentElement,
+            start = element.scrollTop,
+            change = to - start,
+            startDate = +new Date(),
+            // t = current time
+            // b = start value
+            // c = change in value
+            // d = duration
+            easeInOutQuad = function (t, b, c, d) {
+                t /= d / 2;
+                if (t < 1) return c / 2 * t * t + b;
+                t--;
+                return -c / 2 * (t * (t - 2) - 1) + b;
+            },
+            animateScroll = function () {
+                const currentDate = +new Date();
+                const currentTime = currentDate - startDate;
+                element.scrollTop = parseInt(easeInOutQuad(currentTime, start, change, duration));
+                if (currentTime < duration) {
+                    requestAnimationFrame(animateScroll);
+                } else {
+                    element.scrollTop = to;
+                }
+            };
+        animateScroll();
+    }
+    /*  -------------------------------------------------------*/
+    /*  находим кнопку и задаем верхний отступ при котором она будет появляться */
+    /*  -------------------------------------------------------*/
+    function showAndClickBtnUp(btnUp, topOfset = 300, duration) {
+    let btn = document.querySelector(btnUp);
+    if (btn) {
+        btn.classList.add('_visible');
+        window.addEventListener('scroll', () => {
+            let top = window.pageYOffset;
+            if (top > topOfset) {
+                btn.classList.add('_visible');
+            } else {
+                btn.classList.remove('_visible');
+            }
+        });
+
+        btn.onclick = (e) => {
+            e.preventDefault();
+            scrollToTop(0, duration);
+        };
+    }
+}
+</script>

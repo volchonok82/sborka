@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="star_rating.css">
+    <title>Звездный рейинг</title>
+</head>
+<!-- ! Для демо создать файл rating.json с содержимым  {"newRating" : 3.7} -->
+<body>
+    <div class="wrapper">
+        <h1>Звездный рейинг</h1>
+        <form action="#" class="form">
+            <div class="form__item">
+                <div class="form__label">простой рейтинг (без JS):</div>
+                <div class="simple-rating">
+                    <div class="simple-rating__items">
+                        <input type="radio" class="simple-rating__item" name="simple-rating" id="simple-rating__5"
+                            value="5">
+                        <label for="simple-rating__5" class="simple-rating__label"></label>
+                        <input type="radio" class="simple-rating__item" name="simple-rating" id="simple-rating__4"
+                            value="4">
+                        <label for="simple-rating__4" class="simple-rating__label"></label>
+                        <input type="radio" class="simple-rating__item" name="simple-rating" id="simple-rating__3"
+                            value="3">
+                        <label for="simple-rating__3" class="simple-rating__label"></label>
+                        <input type="radio" class="simple-rating__item" name="simple-rating" id="simple-rating__2"
+                            value="2">
+                        <label for="simple-rating__2" class="simple-rating__label"></label>
+                        <input type="radio" class="simple-rating__item" name="simple-rating" id="simple-rating__1"
+                            value="1" checked>
+                        <label for="simple-rating__1" class="simple-rating__label"></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form__item">
+                <div class="form__label">точный рейтинг (JS):</div>
+
+                <!-- просто меняет среднее значение на то которое мы указали а потом отправляет это значение при отправке формы -->
+                <div class="rating rating_set"> <!--для запрета менять значение убрать класс rating_set -->
+                    <div class="rating__body">
+                        <div class="rating__active"></div>
+                        <div class="rating__items">
+                            <input type="radio" name="rating" class="rating__item" value="1">
+                            <input type="radio" name="rating" class="rating__item" value="2">
+                            <input type="radio" name="rating" class="rating__item" value="3">
+                            <input type="radio" name="rating" class="rating__item" value="4">
+                            <input type="radio" name="rating" class="rating__item" value="5">
+                        </div>
+                    </div>
+                    <div class="rating__value">3.6</div>
+                </div>
+            </div>
+            <button type="submit" class="form__btn">Отправить</button>
+        </form>
+        <div class="form">
+            <div class="form__label">точный рейтинг (JS + AJAX):</div>
+
+            <!-- отправка оценки и получение нового среднего значения от сервера с помощью ajax -->
+            <div data-ajax="true" class="rating rating_set"> 
+                <div class="rating__body">
+                    <div class="rating__active"></div>
+                    <div class="rating__items">
+                        <input type="radio" name="rating" class="rating__item" value="1">
+                        <input type="radio" name="rating" class="rating__item" value="2">
+                        <input type="radio" name="rating" class="rating__item" value="3">
+                        <input type="radio" name="rating" class="rating__item" value="4">
+                        <input type="radio" name="rating" class="rating__item" value="5">
+                    </div>
+                </div>
+                <div class="rating__value">1.6</div>
+            </div>
+        </div>
+    </div>
+    <script src="star_rating.js"></script>
+</body>
+
+</html>

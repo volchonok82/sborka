@@ -1,0 +1,26 @@
+@@include('./html/head.html',{
+'lang':'ru',
+'meta_desc': 'описание страницы',
+'title': 'INDEX'
+})
+
+<body>
+    <div class="_body-wrapper">
+        <!-- @@include('./html/_debug.html',{
+        'name':'value',
+        }) -->
+        @@include('./html/header.html',{
+        'class':'index__header',
+        })
+
+
+        @@include('./html/footer.html',{
+        'class':'index__footer',
+        })
+    </div>
+    <!-- @@include('./html/popup.html',{
+        }) -->
+    @@include('./html/js.html',{})
+</body>
+
+</html>

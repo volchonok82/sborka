@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ru">
+<!--! следи за ZINDEXсом  -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        ._wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* filter */
+        .filter__buttons {
+            display: flex;
+            max-width: 100%;
+            font-size: 22px;
+            padding: 15px;
+            border: 1px solid black;
+
+            list-style: none;
+        }
+
+        .filter__buttons li {
+            flex: 1 1 25%;
+        }
+
+        .filter__button {
+            width: 100%;
+            text-transform: uppercase;
+            padding: 15px;
+            border: 1px solid black;
+        }
+
+        .filter__button._active {
+            color: red;
+            border-color: red;
+        }
+
+        .filter__items {
+            border: 1px solid black;
+            display: grid;
+            grid-template: auto / repeat(3, 1fr);
+            grid-gap: 10px;
+        }
+
+        .filter__item {
+            min-height: 100px;
+            border: 1px solid red;
+            opacity: 1;
+            transition: all 1s ease 0s;
+        }
+
+        .filter__item._hide {
+            display: none;
+            opacity: 0;
+        }
+
+
+        /* ========== TABS =========== */
+        .tabs {
+            margin-top: 50px;
+        }
+
+        .tabs__buttons {
+            display: flex;
+            width: 100%;
+            list-style: none;
+            padding: 0;
+            border: 1px solid black;
+        }
+
+        .tabs__buttons li {
+            flex: 1 1 33.33%;
+        }
+
+        .tabs-button {
+            width: 100%;
+            padding: 15px;
+            text-transform: uppercase;
+            border: 1px solid black;
+        }
+
+        .tabs-button._active {
+            color: red;
+            border-color: red;
+        }
+
+        .tabs-block {
+            width: 100%;
+            min-height: 150px;
+            border: 1px solid black;
+
+            display: none;
+        }
+
+        .tabs-block._active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="filter">
+        <div class="filter__wrapper _wrapper">
+            <h2>filter</h2>
+
+            <ul class="filter__buttons">
+                <li><button class="filter__button" data-filter-name="one">One <span>one</span></button> </li>
+                <li><button class="filter__button" data-filter-name="two">two</button> </li>
+                <li><button class="filter__button" data-filter-name="three">three</button> </li>
+                <li><button class="filter__button _active" data-filter-name="all">all</button> </li>
+            </ul>
+
+            <div class="filter__items">
+                <div class="filter__item" data-filter-item="one">one</div>
+                <div class="filter__item" data-filter-item="two">two</div>
+                <div class="filter__item" data-filter-item="three">three</div>
+                <div class="filter__item" data-filter-item="one">one</div>
+                <div class="filter__item" data-filter-item="three">three</div>
+                <div class="filter__item" data-filter-item="two">two</div>
+                <div class="filter__item" data-filter-item="two">two</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="tabs">
+        <div class="tabs__wrapper _wrapper">
+            <ul class="tabs__buttons">
+                <li><button class="tabs-button _active" data-tab="1"><span>Описание</span></button></li>
+                <li><button class="tabs-button" data-tab="2"><span>Характеристики</span></button></li>
+                <li><button class="tabs-button" data-tab="3"><span>Доп.инфо</span></button></li>
+            </ul>
+            <div class="tabs__blocks">
+                <div class="tabs-block _active" data-tab="1">
+                    <h2>описание</h2>
+                </div>
+                <div class="tabs-block" data-tab="2">
+                    <h2>Характеристики</h2>
+                </div>
+                <div class="tabs-block" data-tab="3">
+                    <h2>Доп инфо</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // переключение фильтра
+        toggleFilter('.filter__button', '.filter__item');
+
+        function toggleFilter(buttonsFilter, itemsFilter, filterShowAll = 'all') {
+            let filterButtons = document.querySelectorAll(buttonsFilter);
+            let filterItems = document.querySelectorAll(itemsFilter);
+
+            function activeFilter() {
+                filterButtons.forEach(filterButton => {
+                    filterButton.classList.remove('_active');
+                    this.classList.add('_active');
+                    let filterName = this.dataset.filterName;
+
+                    filterItems.forEach(filterItem => {
+                        if (filterName == filterShowAll) {
+                            filterItem.classList.remove('_hide');
+                        } else {
+                            filterItem.classList.add('_hide');
+                            if (filterItem.dataset.filterItem == `${filterName}`) {
+                                filterItem.classList.remove('_hide');
+                            }
+                        }
+                    });
+                });
+            }
+            filterButtons.forEach(filterButton => {
+                filterButton.addEventListener('click', activeFilter);
+            });
+        }
+
+        //переключение табов
+        toggleTabs('.tabs-button', '.tabs-block');
+
+        function toggleTabs(buttonTab, blockTab) {
+            let tabsButtons = document.querySelectorAll(buttonTab);
+            let tabsBlocks = document.querySelectorAll(blockTab);
+
+            function activeTab() {
+                tabsButtons.forEach(tabsButton => {
+                    tabsButton.classList.remove('_active');
+                    this.classList.add('_active');
+                    let id = this.dataset.tab;
+                    tabsBlocks.forEach(tabBlock => {
+                        tabBlock.classList.remove('_active');
+                        if (tabBlock.dataset.tab == id) {
+                            tabBlock.classList.add('_active');
+                        }
+                    });
+                });
+            }
+            tabsButtons.forEach(tabsButton => {
+                tabsButton.addEventListener('click', activeTab);
+            });
+        }
+    </script>
+</body>
+
+</html>

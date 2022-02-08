@@ -1,0 +1,110 @@
+@import '../../node_modules/nouislider/dist/nouislider';
+// =============== CUSTOM ===============
+
+// стили для созданого нами контейнера для слайдера
+.nouiwrap{
+    // width: 400px;
+    width: 100%;
+    // height: 400px;
+    padding: 40px;
+    background-color: grey;
+    border-radius: 20px;
+  
+}
+
+
+//  /* 
+ // ширина и высота самого слайдера
+.nouislider {
+    margin: 0 auto;
+    height: 100%;
+    background-color: transparent;
+}
+
+// стили оболочки слайдера
+// обнулил, проще контейнеру задать стили
+.noUi-target{
+    background-color:none;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+}
+
+// толщина горизонтального слайдера
+.noUi-horizontal {
+    height: 20px;
+}
+
+// толщина вертикального слайдера
+.noUi-vertical {
+    // width: 20px;
+}
+
+
+// стили полоски по которой ходят ползунки
+.noUi-connects {
+    background-color: red;
+    border-radius: 50px;
+}
+
+// полоска с выбранными диапазонами
+.noUi-connect {
+    background-color: blue;
+}
+
+
+// ====== ползунки ======
+// позиционирование
+// задаем размеры
+$width: 30px;
+$height: 30px;
+
+
+// при горизонатльном 
+.noUi-horizontal .noUi-handle {
+    width: $width;
+    right: -($width*0.5);
+    height: $height;
+    // top: -($height/2);
+    // transform: translate(0, -15%);
+}
+
+// при веритикальном
+// .noUi-vertical .noUi-handle {
+//     width: $width;
+//     height: $height;
+//     top: -($height/2);
+//     // отцентровать не получается
+//     transform: translate(-80%, 0);
+// }
+
+//===== оформление ======
+.noUi-handle {
+    border-radius: 50%;
+    border: 5px solid red;
+    background-color: orange;
+    cursor: pointer;
+    outline: none;
+    box-shadow: none;
+
+    &:hover {
+        background-color: red;
+    }
+
+    // активный ползунок
+    &.noUi-active {
+        box-shadow: none;
+        background-color: black;
+    }
+    &::after,
+    &::before{
+        content: none;
+    }
+}
+
+
+// .#{$noUi-css-prefix}-tooltip{
+//     position: relative;
+//     top: -100px;
+//     left: 0;
+// }
